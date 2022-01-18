@@ -7,15 +7,13 @@ CREATE TABLE users (
     password varchar(100)
 );
 
-CREATE TABLE chorelist (
+CREATE TABLE chores (
     id serial PRIMARY KEY,
     location text,
     title text,
     description text,
     date integer,
-    time integer,
-    provider_name text,
-    location text,
+    amount_paid integer,
     user_id integer REFERENCES users (id)
 
 );

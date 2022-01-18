@@ -8,8 +8,8 @@ const express = require('express'),
 
 router.get('/', async (req, res, next) => {
     const user_id = 2;
-    const appointmentList = await appointmentsModel.getAppointmentsList(user_id);
-    res.json(appointmentList).status(200);
+    const choresList = await choreListModel.getChoreList(user_id);
+    res.json(choreList).status(200);
 });
 
 router.get('/:provider_id', async (req, res) => {
@@ -24,8 +24,8 @@ router.get('/:provider_id', async (req, res) => {
 router.get('/:user_id', async (req, res) => {
     const { user_id } = req.params;
 
-    const userAppointmentData = await appointmentsModel.getUserAppointments(user_id);
-    res.json(userAppointmentData).status(200);
+    const userChoreData = await choreListModel.getUserChores(user_id);
+    res.json(userChoreData).status(200);
 
     
         

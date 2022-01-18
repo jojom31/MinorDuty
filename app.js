@@ -31,7 +31,7 @@ SERVER.listen(PORT, HOSTNAME, () => {
 });
 
 const rootController = require('./routes/index');
-const appointmentsController = require('./routes/appointments'); 
+const choresListController = require('./routes/chorelist'); 
 const eventsController = require('./routes/events'); 
 const usersController = require('./routes/users'); 
 

@@ -4,40 +4,40 @@
 const db = require('./conn');
 
 class  choreListModel {
-    constructor(id, location, title, description, date, time,  user_id) {
+    constructor(id, location, title, description, date, amount_paid,  user_id) {
         this.id = id;
         this.location = location;
         this.title = title;
         this.description = description;
         this.date = date;
-        this.time = time;
+        this.amount_paid = amount_paid;
         this.user_id = user_id;
         
     }
 
-    static async getAppointmentsList() {
+    static async getChoreList() {
             const response = await db.any(`
-            SELECT * FROM appointments;`);
+            SELECT * FROM chores;`);
             return response
 
     }
-    static async getProviderAppointments(provider_id) {
-        const providerAppointmentData = db.one(`
-        SELECT * FROM appointments WHERE provider_id = ${provider_id}; `  
-        );
-        return providerAppointmentData
-    }
-    static async getUserAppointments(user_id) {
-        const userAppointmentData = db.one(`
+    //static async getChores(provider_id) {
+        //const providerAppointmentData = db.one(`
+        //SELECT * FROM chores WHERE provider_id = ${provider_id}; `  
+        //);
+        //return providerAppointmentData
+    //}
+    static async getUserChores(user_id) {
+        const userChoreData = db.one(`
         SELECT * FROM appointments WHERE id = ${user_id}; `  
         );
-        return userAppointmentData
+        return userChoreData
     }
 
-    static async addAppointments(description, date, time, provider_name, location, user_id, provider_id) {
-        const response = await db.result(`INSERT INTO appointments ( description, date, time, provider_name, location, user_id, provider_id) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+    static async addChores(location, title, description, date, amount_paid, location, user_id,) {
+        const response = await db.result(`INSERT INTO appointments ( location, title, description, date, amount_paid, user_id,) VALUES ($1, $2, $3, $4, $5, $6)`,
 
-        [description, date, time, provider_name, location, user_id, provider_id ]
+        [location, title, description, date, amount_paid, user_id,]
     );
         return response;
     }
@@ -52,10 +52,10 @@ class  choreListModel {
     //
     //}
 
-    static async deleteAppointments(id) {
-        const response = await db.result(`DELETE FROM appointments WHERE id = ${id}`);
+    static async deleteChores(id) {
+        const response = await db.result(`DELETE FROM chores WHERE id = ${id}`);
         return response;
     }
 
 }
-module.exports = AppointmentsModel;
+module.exports = choreListModel;
