@@ -4,15 +4,15 @@
 const db = require('./conn');
 
 class  choreListModel {
-    constructor(id, description, date, time, provider_name, location, user_id, provider_id) {
+    constructor(id, location, title, description, date, time,  user_id) {
         this.id = id;
+        this.location = location;
+        this.title = title;
         this.description = description;
         this.date = date;
         this.time = time;
-        this.provider_name= provider_name;
-        this.location = location;
         this.user_id = user_id;
-        this.provider_id = provider_id;
+        
     }
 
     static async getAppointmentsList() {
