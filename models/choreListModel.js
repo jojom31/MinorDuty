@@ -29,28 +29,28 @@ class  choreListModel {
     //}
     static async getUserChores(user_id) {
         const userChoreData = db.one(`
-        SELECT * FROM appointments WHERE id = ${user_id}; `  
+        SELECT * FROM chores WHERE id = ${user_id}; `  
         );
         return userChoreData
     }
 
-    static async addChores(location, title, description, date, amount_paid, location, user_id,) {
-        const response = await db.result(`INSERT INTO appointments ( location, title, description, date, amount_paid, user_id,) VALUES ($1, $2, $3, $4, $5, $6)`,
+    static async addChores(location, title, description, date, amount_paid, user_id,) {
+        const response = await db.result(`INSERT INTO chores ( location, title, description, date, amount_paid, user_id,) VALUES ($1, $2, $3, $4, $5, $6)`,
 
         [location, title, description, date, amount_paid, user_id,]
     );
         return response;
     }
 
-    //static async changeAppointments() {
-        //const response = await db.result(` UPDATE appointments SET  = $1
-        //WHERE id = $2 , 
+    static async changeChores() {
+        const response = await db.result(` UPDATE chores SET  = $1
+        WHERE id = $2 , 
         
-        //[]`
-        //);
-       //     return response;
-    //
-    //}
+        []`
+        );
+            return response;
+    
+    }
 
     static async deleteChores(id) {
         const response = await db.result(`DELETE FROM chores WHERE id = ${id}`);

@@ -1,41 +1,40 @@
-'use strict'
+"use strict";
 
-const HTTP = require('http');
+const HTTP = require("http");
 
-const HOSTNAME = '127.0.0.1';
+const HOSTNAME = "127.0.0.1";
 const PORT = 3003;
 
-const cors = require('cors')
+const cors = require("cors");
 
-const express = require ('express'),
-    session = require('express-session'),
-    app = express();
+const express = require("express"),
+  session = require("express-session"),
+  app = express();
 
-
-app.use(session({
-    secret: 'good vibes',
+app.use(
+  session({
+    secret: "good vibes",
     resave: false,
     saveUninitialized: false,
-    is_logged_in: false
-}));
+    is_logged_in: false,
+  })
+);
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
 
 const SERVER = HTTP.createServer(app);
 
 SERVER.listen(PORT, HOSTNAME, () => {
-    console.log(`Server is running on http://${HOSTNAME}:${PORT}`);
+  console.log(`Server is running on http://${HOSTNAME}:${PORT}`);
 });
 
-const rootController = require('./routes/index');
-const choresListController = require('./routes/chorelist'); 
-const eventsController = require('./routes/events'); 
-const usersController = require('./routes/users'); 
+const rootController = require("./routes/index");
+const choreListController = require("./routes/choreList");
+//const eventsController = require('./routes/events');
+//const usersController = require('./routes/users');
 
 app.use("/", rootController);
-app.use('/appointments', appointmentsController);
-app.use('/events', eventsController);
-app.use('/users', );
+app.use("/choreList", choreListController);

@@ -1,32 +1,27 @@
-'use strict';
+"use strict";
 
-const express = require('express'),
-    router = express.Router(),
-    appointmentsModel = require('../models/choreListModel'),
-    UsersModel = require('../models/usersModel');
+const express = require("express"),
+  router = express.Router(),
+  choreListModel = require("../models/choreListModel");
 
-
-router.get('/', async (req, res, next) => {
-    const user_id = 2;
-    const choresList = await choreListModel.getChoreList(user_id);
-    res.json(choreList).status(200);
+router.get("/", async (req, res, next) => {
+  const chores_id = 2;
+  const choreList = await choreListModel.getChoreList(chores_id);
+  res.json(choreList).status(200);
 });
 
-router.get('/:provider_id', async (req, res) => {
-    const { provider_id } = req.params;
+router.put("/:chores_id", async (req, res) => {
+  const { chores_id } = req.params;
 
-    const providerAppointmentData = await appointmentsModel.getProviderAppointments(provider_id);
-    res.json(providerAppointmentData).status(200);
-
-    
-        
+  const choreData = await choreListModel.changeChores(chores_id);
+  res.json(choreData).status(200);
 });
-router.get('/:user_id', async (req, res) => {
-    const { user_id } = req.params;
+// //router.get('/:user_id', async (req, res) => {
+//     const { user_id } = req.params;
 
-    const userChoreData = await choreListModel.getUserChores(user_id);
-    res.json(userChoreData).status(200);
+//     const userChoreData = await choreListModel.getUserChores(user_id);
+//     res.json(userChoreData).status(200);
 
-    
-        
-});
+// //});
+
+module.exports = router;
