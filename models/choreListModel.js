@@ -29,7 +29,7 @@ class  choreListModel {
     //}
     static async getUserChores(user_id) {
         const userChoreData = db.one(`
-        SELECT * FROM chores WHERE id = ${user_id}; `  
+        SELECT * FROM chores WHERE id = ${id}; `  
         );
         return userChoreData
     }
